@@ -17,10 +17,14 @@ def read_dictionary_file():
         
 def get_close_words(word):
     read_dictionary_file()
-    wordlist = difflib.get_close_matches(word, dictionary,n=5)
-    print(wordlist)
+    if word in dictionary:
+        return False
+    else:
+        wordlist = difflib.get_close_matches(word, dictionary,n=5)
+        return wordlist
     
-get_close_words('අකුස')
+    
+# get_close_words('අකුස')
 
 
 
