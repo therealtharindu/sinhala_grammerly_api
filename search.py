@@ -23,7 +23,7 @@ def get_close_words(word):
         wordlist = difflib.get_close_matches(word, dictionary,n=5)
         return wordlist
     
-    
+
 # get_close_words('අකුස')
 
 

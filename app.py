@@ -2,7 +2,7 @@
 # from binarysearch import sinhalaTokenizedWord,findTheWord,searching,removeUnicodeErrorWord
 from spellChecker import is_correctly_spelled,read_dictionary_file,readSinhalaWordList,removeUnicodeError
 from misspelledwords.regularMisspelled import correct_misspelled_word
-from search import get_close_words
+from search import  get_close_words
 from flask import Flask, jsonify, request,json
 from flask_restful import Api, Resource
 from flask_cors import CORS
@@ -41,6 +41,7 @@ def list_of_close_words():
     content = request.get_json()
     word = content['word']
     close_words = get_close_words(word)
+    
 
     return jsonify(close_words)
 
