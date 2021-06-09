@@ -1,6 +1,9 @@
-import difflib
+# import difflib
+# from fuzzywuzzy import fuzz
+# from fuzzywuzzy import process
+import searchLib
 
-dictionary = set()
+dictionary = list()
 
 def read_dictionary_file():
     global dictionary
@@ -8,33 +11,43 @@ def read_dictionary_file():
     if dictionary:
         return 
 
-    with open("dataset/sinhala_list.text","r",encoding="UTF-8") as f:
+    with open("dataset/sinhala_list2.text","r",encoding="UTF-8") as f:
         contents = f.read()
-        dictionary = set(
+        dictionary = list(
             word.lower().replace('\u200d', '')
             for word in contents.splitlines()
         )
         
+
+
 def get_close_words(word):
     read_dictionary_file()
-    if word in dictionary:
+    
+    wordindex = searchLib.binarySearch(dictionary,0,len(dictionary)-1,word)
+    wordlist= list()
+    if wordindex == -1:
         return False
     else:
-        wordlist = difflib.get_close_matches(word, dictionary,n=5)
-        return wordlist
+       wordlist.append(dictionary[wordindex])
+       wordlist.append(dictionary[wordindex-1])
+       wordlist.append(dictionary[wordindex-2])
+       wordlist.append(dictionary[wordindex+1])
+       wordlist.append(dictionary[wordindex+2])
+    return wordlist
     
 
-# get_close_words('අකුස')
+get_close_words("කොරෝනා")
 
+# def get_close_words(word):
+#     read_dictionary_file()
+#     if word in dictionary:
+#         return False
+#     else:
+#         wordlist = difflib.get_close_matches(word, dictionary,n=5)
+#         # processedwordlist = process.extract(word, dictionary, limit=5)
 
-
-# words = ['රසායනික','රසායන','රසායනාගාරය','පාසල','පාසලක්','පාසලේ']
-# wordlist = difflib.get_close_matches('පාස', words)
-
-# if not wordlist:
-#     print('Not found in the List')
-# else:
-#     print(wordlist)
+#         # wordlist = [tuplelist[0] for tuplelist in processedwordlist]
+#         return wordlist
 
 
 

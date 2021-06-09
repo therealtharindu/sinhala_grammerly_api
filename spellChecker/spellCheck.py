@@ -1,4 +1,7 @@
-dictionary = set()
+import searchLib
+
+
+dictionary = list()
 
 def read_dictionary_file():
     global dictionary
@@ -6,9 +9,9 @@ def read_dictionary_file():
     if dictionary:
         return 
 
-    with open("dataset/sinhala_list.text","r",encoding="UTF-8") as f:
+    with open("dataset/sinhala_list2.text","r",encoding="UTF-8") as f:
         contents = f.read()
-        dictionary = set(
+        dictionary = list(
             word.lower().replace('\u200d', '')
             for word in contents.splitlines()
         )
@@ -18,7 +21,12 @@ def read_dictionary_file():
 def is_correctly_spelled(word):
     word = word.lower()
     read_dictionary_file()
-    return word in dictionary
+    # return word in dictionary
+    word_in_dictionary = searchLib.binarySearch(dictionary,0,len(dictionary)-1,word)
+    if word_in_dictionary == -1:
+        return True
+    else:
+        return False
 
 
 
