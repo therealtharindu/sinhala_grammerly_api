@@ -3,6 +3,7 @@
 from spellChecker import is_correctly_spelled,read_dictionary_file,readSinhalaWordList,removeUnicodeError
 from misspelledwords.regularMisspelled import correct_misspelled_word
 from search import  get_close_words
+from add_to_local_dictionary import add_to_local_dictionary
 from flask import Flask, jsonify, request,json
 from flask_restful import Api, Resource
 from flask_cors import CORS
@@ -44,6 +45,15 @@ def list_of_close_words():
     
 
     return jsonify(close_words)
+
+@app.route('/api/add_to_local_dictionary', methods = ['POST'])
+def add_to_local():
+    content = request.get_json()
+    word = content['word']
+    added_word = add_to_local_dictionary(word)
+    
+
+    return jsonify(added_word)
 
 
 if __name__ == "__main__":

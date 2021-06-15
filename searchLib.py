@@ -7,7 +7,7 @@ def binarySearch (arr, l, r, x):
  
         # If element is present at the middle itself
         if arr[mid] == x:
-            return -1
+            return 1
          
         # If element is smaller than mid, then it
         # can only be present in left subarray
@@ -21,4 +21,4 @@ def binarySearch (arr, l, r, x):
  
     else:
         # Element is not present in the array
-        return l-1
+        return l

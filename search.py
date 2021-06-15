@@ -25,7 +25,7 @@ def get_close_words(word):
     
     wordindex = searchLib.binarySearch(dictionary,0,len(dictionary)-1,word)
     wordlist= list()
-    if wordindex == -1:
+    if wordindex == 1:
         return False
     else:
        wordlist.append(dictionary[wordindex])
@@ -36,7 +36,7 @@ def get_close_words(word):
     return wordlist
     
 
-get_close_words("කොරෝනා")
+# get_close_words("කොරෝනා")
 
 # def get_close_words(word):
 #     read_dictionary_file()
